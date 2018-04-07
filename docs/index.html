@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		body {
+			background-color: #1dcaff;
+			font-family: Calibri, sans-serif;
+		}
+
+		.container-fluid {
+			background-color: #D3D3D3;
+		}
+
+		.title {
+			background-color: #1dcaff;
+			padding: 6px;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			align-items: center;
+		}
+
+		.title h1 {
+			margin: 0;
+			text-align: center;
+			color: white;
+			font-weight: bold;
+		}
+
+		.title p {
+			margin: 0;
+			text-align: center;
+			color: white;
+		}
+
+		.title.text {
+			display: flex;
+			flex-direction: column;
+			align-self: flex-end;
+		}
+
+		#bu {
+			height: 70px;
+			width: 100px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+
+		#twitter {
+			height: 55px;
+			width: 100px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		@media all and (max-width: 1315px) {
+			.title.text {
+				order: 3;
+			}
+
+			#bu {
+				order: 1;
+			}
+			#twitter {
+				order:2;
+			}
+		}
+
+		.row {
+			display: flex;
+			flex-wrap: wrap;
+			padding: 3px;
+		}
+
+		.col-sm-4 {
+			padding: 3px;
+			display: flex;
+			flex-direction: column;
+		}
+		.column {
+			border: 3px solid #1dcaff;
+			border-top: 0;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.block {
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+
+			background-color: white;
+		}
+
+		.block h2 {
+			margin: 0;
+			width: 100%;
+			font-size: medium;
+			text-align: center;
+			color: white;
+			background-color: #1dcaff;
+			padding: 4px 3px 2px 3px;
+			font-weight: bold;
+		}
+
+		.content {
+			padding: 5px 10px;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			justify-content: center;
+			align-items: stretch;
+		}
+
+		.content p, ul {
+			padding: 5px 0px;
+			margin: 0;
+			color: black;
+			text-align: left;
+		}
+
+		.content ul {
+			padding-left: 15px;
+		}
+
+		.content.florida, .content.california {
+			padding: 0;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			align-items: center;
+		}
+		.florida-text, .california-text {
+			max-width: 50%;
+		}
+		.florida-img {
+			width: 200px;
+			height: 265px;
+		}
+
+		.california-img {
+			width: 200px;
+			height: 408px;
+		}
+
+		.content.texas {
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: center;
+		}
+		.texas-text {
+			width: 100%;
+		}
+		.texas-img {
+			max-width: 400px;
+			min-width: 200px;
+
+		}
+	</style>
+</head>
+<body>
+
+<div class="title">
+	<div id="bu">
+		<img src="bu.png" width="100%">
+	</div>
+	<div class="title text">
+		<h1>Trends from Twitter Correlated to the 2016 Presidential Election</h1>
+		<p>Gabriela Carillo, Eduardo Portet, Jiahua Zhang</p>
+	</div>
+	<div id="twitter">
+		<img src="twitter.png" height="100%">
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="column">
+				<div class="block">
+					<h2>Introduction</h2>
+					<div class="content">
+						<p>Social media has had a significant impact on political elections but especially in the 2016 Presidential Election. Is social media a good indicator of how people are going to vote in an election? Are there trends in how people used Twitter across the US during the election? How can we discover trends and analyze how they were correlated to the outcome of the election?</p>
+					</div>
+				</div>
+				<div class="block">
+					<h2>Goals</h2>
+					<div class="content">
+						<p>Our main goals in analyzing Twitter data were as follows:</p>
+						<ul>
+						<li>Determine if a correlation exists between what users Tweeted in a certain region and the outcome of the election in that region</li>
+						<li>Analyze the sentiment behind the content of Tweets that lead up to the election to determine negativity, neutrality, and positivity towards either candidate</li>
+						<li>Find what important `words or phrases people in different regions used to describe the candidates and the election</li>
+						</ul>
+					</div>
+				</div>
+				<div class="block">
+					<h2>Data Collected</h2>
+					<div class="content">
+						<p>Twitter’s public dataset is available online. However, only Tweets within the last seven days are readily available. Therefore, we used web-scraping to collect Tweets that were posted after the primary elections (mid June 2016) but before the presidential election (November 8, 2016) in the following format:</p>
+						<ul>
+						<li>ID, location, text, and hashtags for each Tweet</li>
+						<li>277,745 Tweets that were pro Donald Trump</li>
+						<li>140,676 Tweets that were pro Hillary Clinton</li>
+						<li>In order to determine if a Tweet was for or against either candidate, we used the following approach: </li>
+						<li>Avoided ambiguous hashtags such as variations of the candidates’ names</li>
+						<li>Used hashtags such as #I’mWithHer and #DumpTrump as pro Clinton, #LockHerUp and #CrookedHillary as pro Trump, all of which were trending on Twitter during that time</li>
+						<li>Then, used sentiment analysis to determine if the text of the Tweet was positive or negative to rule out sarcasm</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="column">
+				<div class="block">
+					<h2>Clusters and Plot</h2>
+					<div class="content">
+						<p>Important data preprocessing:</p>
+						<ul>
+						<li>Two main dataframes: pro_Hillary_tweets and pro_Trump_tweets based on hashtags that indicated support for each candidate</li>
+						<li>Ran a sentiment analysis algorithm to get rid of tweets that were negative in either dataframe to avoid including sarcastic or negative tweets</li>
+						<li>Joined the two dataframes together</li>
+						<li>Used TfidfVectorizer to vectorize the text of the tweets to represent features that would be used to cluster</li>
+						<li>Ran k-means++ on the features with num_clusters = 2 in order to obtain 2 clusters that represented similarities in tweets that supported each candidate</li>
+						<li>Plotted each cluster over a map of the US, using longitude and latitude as x, y coordinates and  the cluster labels as colors</li>
+						</ul>
+					</div>
+				</div>
+				<div class="block">
+					<h2 >Florida Results</h2>
+					<div class="content">
+						<div class="content florida">
+							<div class="florida-text">
+								<ul>
+								<li>Because Florida was a swing state during the election, we expected to see points scattered across the state and no majority in support for either candidate</li>
+								<li>Trump won Florida by only 2% and we see a slight majority of Trump (orange) clusters as expected</li>
+								</ul>
+							</div>
+							<div class="florida-img">
+								<img src="florida.png" width="100%">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="block">
+					<h2>California Results</h2>
+					<div class="content">
+						<div class="content california">
+							<div class="california-img">
+								<img src="california.png" width="100%">
+							</div>
+							<div class="california-text">
+								<ul>
+								<li>Clinton won California by roughly 30%</li>
+								<li>We expected to see a majority of Hillary clusters, however we did not</li>
+								<li>Instead, we see two major Trump clusters in northern and southern California</li>
+								<li>In fact, when we checked what the clustered looked like in every state that Hillary won, we did not see large Hillary clusters</li>
+								<li>We think that this is because Trump had a more significant role in social media himself, especially Twitter. Because of this, it is possible that a lot of people used Twitter to talk about Trump more, and our sentiment analysis algorithm may have misinterpreted tweets and classified them as pro-Trump</li>
+								<li>We were able to confirm this because we had double the amount of data for Trump</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+		<div class="column">
+			<div class="block">
+				<h2>Texas Results</h2>
+				<div class="content">
+					<div class="content texas">
+						<div class="texas-text">
+							<ul>
+							<li>Trump won the vote in Texas by roughly 10%</li>
+							<li>We see larger and more Trump clusters (orange), especially near major cities such as Austin, Houston, and San Antonio</li>
+							<li>This means that people in those cities were tweeting similar things about Donald Trump and because we attempted to remove negative tweets from our data, the clusters represent similarities in tweets that favored Trump</li>
+							</ul>
+						</div>
+						<div class="texas-img">
+							<img src="texas.png" width="100%">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="block">
+				<h2>Conclusion</h2>
+				<div class="content">
+					<p>Although we were not able to find all of the clusters we hypothesized, we still did find interesting results. We found that more people talked about Trump in the period leading up to the election on Twitter, making it difficult to find Hillary clusters. We expect that social media will always be used as a form of expression and support or opposition for something. Analyzing this can prove to be difficult, especially when one candidate had a lot more influence on the specific social media platform we used. Having a strong presence in social media incentivizes your supporters to also engage and participate in the discussion. Social media can reveal intriguing trends in data, and we expect that as technology and machine learning continues to advance, analyzing these trends will become simpler.</p>
+				</div>
+			</div>
+			<div class="block">
+				<h2>Future Work</h2>
+				<div class="content">
+					<ul>
+						<li>Use other social media platforms to analyze trends during the time leading up to the election</li>
+						<li>Find a better way to detect sarcasm in text</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
